@@ -1,24 +1,13 @@
-import React, { createContext } from 'react';
+import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
-const trees = [
-  {id : 1, type : "apple"},
-  {id : 2, type : "mango"},
-  {id : 3, type : "banana"},
-  {id : 4, type : "orange"},
-]
-
-export const NameContext = createContext(trees);
-
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <NameContext.Provider value = {{trees}}>
     <App />
-    </NameContext.Provider>
   </React.StrictMode>
 );
 
