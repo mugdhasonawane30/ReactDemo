@@ -1,37 +1,45 @@
 import { render, screen, fireEvent } from "@testing-library/react";
 import App from "./App";
 
-test("Should render list of number", () => {
+test("Should display one text for entering number 1", () => {
   const { container } = render(<App />);
-  const renderButton = screen.getByRole("button", { name: "Render" });
-  fireEvent.click(renderButton);
-  const list = container.querySelectorAll("li")[0];
-  expect(list.textContent).toContain("FizzBuss");
+  const input = screen.getByPlaceholderText("Enter number");
+  fireEvent.change(input, { target: { value: 1 } });
+
+  const enterNumberButton = screen.getByRole("button", {
+    name: "Convert Number to words",
+  });
+  fireEvent.click(enterNumberButton);
+
+  const wordId = screen.getByTestId("word-id");
+  expect(wordId.textContent).toBe("Number in words: one ");
 });
 
-test("Should print Fizz if number is divided by 3", () => {
+test("Should display two text for entering number 2", () => {
   const { container } = render(<App />);
-  const renderButton = screen.getByRole("button", { name: "Render" });
-  fireEvent.click(renderButton);
+  const input = screen.getByPlaceholderText("Enter number");
+  fireEvent.change(input, { target: { value: 2 } });
 
-  const list = container.querySelectorAll("li")[3];
-  expect(list.textContent).toContain("Fizz");
+  const enterNumberButton = screen.getByRole("button", {
+    name: "Convert Number to words",
+  });
+  fireEvent.click(enterNumberButton);
+
+  const wordId = screen.getByTestId("word-id");
+  expect(wordId.textContent).toBe("Number in words: two ");
 });
 
-test("Should print Buss if number is divided by 5", () => {
+
+test("Should display ten text for entering number 10", () => {
   const { container } = render(<App />);
-  const renderButton = screen.getByRole("button", { name: "Render" });
-  fireEvent.click(renderButton);
+  const input = screen.getByPlaceholderText("Enter number");
+  fireEvent.change(input, { target: { value: 10 } });
 
-  const list = container.querySelectorAll("li")[5];
-  expect(list.textContent).toContain("Buss");
-});
+  const enterNumberButton = screen.getByRole("button", {
+    name: "Convert Number to words",
+  });
+  fireEvent.click(enterNumberButton);
 
-test("Should print FizzBuss if number is divided by 3 & 5", () => {
-  const { container } = render(<App />);
-  const renderButton = screen.getByRole("button", { name: "Render" });
-  fireEvent.click(renderButton);
-
-  const list = container.querySelectorAll("li")[15];
-  expect(list.textContent).toContain("FizzBuss");
+  const wordId = screen.getByTestId("word-id");
+  expect(wordId.textContent).toBe("Number in words: ten ");
 });
